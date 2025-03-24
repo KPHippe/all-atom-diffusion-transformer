@@ -3,7 +3,7 @@
 # specify here default configuration
 # order of defaults determines the order in which configs override each other
 defaults:
-  - data: joint  # joint / qm9_only / mp20_only 
+  - data: joint  # joint / qm9_only / mp20_only
   - encoder: transformer
   - decoder: transformer
   - autoencoder_module: vae
@@ -24,7 +24,7 @@ task_name: "train_autoencoder"
 # tags to help you identify your experiments
 # you can overwrite this in experiment configs
 # overwrite from command line with `python train.py tags="[first_tag, second_tag]"`
-tags: ["joint", "autoencoder", "train"]
+tags: ["joint", "autoencoder", "train", 'reserving-gpus']
 
 # set False to skip model training
 train: True

@@ -20,21 +20,27 @@ loss_weights:
   loss_atom_types:
     mp20: 1.0
     qm9: 1.0
+    # qmof150: 0.0
   loss_lengths:
     mp20: 1.0
     qm9: 0.0
+    # qmof150: 0.0
   loss_angles:
     mp20: 10.0
     qm9: 0.0
+    # qmof150: 0.0
   loss_frac_coords:
     mp20: 10.0
     qm9: 0.0
+    # qmof150: 0.0
   loss_pos:
     mp20: 0.0
     qm9: 10.0
+    # qmof150: 0.0
   loss_kl:
     mp20: 0.00001
     qm9: 0.00001
+    # qmof150: 0.00001
 
 augmentations:
   noise: 0.1  # proportion of atoms to perturb

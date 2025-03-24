@@ -25,6 +25,6 @@ datamodule:
     test: 256
 
   num_workers:
-    train: 16
-    val: 16
-    test: 16
+    train: 4
+    val: 4
+    test: 4

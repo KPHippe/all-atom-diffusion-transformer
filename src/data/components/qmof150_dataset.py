@@ -83,7 +83,7 @@ class QMOF150(InMemoryDataset):
                 result_dict.update(
                     {"qmof_id": filename, "cif": crystal_str, "graph_arrays": graph_arrays}
                 )
-            
+                cached_data.append(result_dict)
             torch.save(cached_data, os.path.join(self.root, "all_ori.pt"))
 
         data_list = []
