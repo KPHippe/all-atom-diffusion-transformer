@@ -16,7 +16,7 @@ defaults:
   - _self_
 
 # run name, eg. for wandb logging
-name: "fsq-vae"
+name: ""
 
 # task name, determines output directory path
 task_name: "train_autoencoder"

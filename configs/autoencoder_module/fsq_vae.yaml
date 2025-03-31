@@ -35,9 +35,7 @@ loss_weights:
   loss_pos:
     mp20: 0.0
     qm9: 10.0
-  loss_kl:
-    mp20: 0.00001
-    qm9: 0.00001
+
 
 augmentations:
   noise: 0.1  # proportion of atoms to perturb

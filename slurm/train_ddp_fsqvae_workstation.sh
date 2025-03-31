@@ -19,12 +19,17 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # Model variables
 latent_dim=8  # 4 / 8
-loss_kl=0.00001  # 0.0001 / 0.00001
+codebook_levels="[8,5,5,5]"
 
 # Logging info
+codebook_levels_array=($(echo $codebook_levels | tr -d '[]' | tr ',' ' ')) # Convert string to array
+codebook_size=1
+for level in "${codebook_levels_array[@]}"; do
+    codebook_size=$((codebook_size * level))  # Calculate product
+done
 latent_str="latent@${latent_dim}"
-kl_str="kl@${loss_kl}"
-name="vae_${latent_str}_${kl_str}"
+codebook_str="codebook@${codebook_size}"
+name="fsqvae_${latent_str}_codebooksize_${codebook_str}"
 
 # Define the base command with torchrun for multi-GPU training
 # torchrun replaces srun for distributed training on a single machine
@@ -34,7 +39,7 @@ application="python -m torch.distributed.run --standalone --nproc_per_node=${NUM
 dist_options="--master_addr localhost --master_port 12345"
 
 # Application + options
-options="$workdir/src/train_autoencoder.py trainer=ddp logger=wandb name=$name ++autoencoder_module.latent_dim=$latent_dim ++autoencoder_module.loss_weights.loss_kl.mp20=$loss_kl ++autoencoder_module.loss_weights.loss_kl.qm9=$loss_kl"
+options="$workdir/src/train_autoencoder.py --config-name=train_fsqautoencoder.yaml trainer=ddp logger=wandb name=$name ++autoencoder_module.latent_dim=$latent_dim"
 
 # Combine application and options
 CMD="$application $dist_options $options"
